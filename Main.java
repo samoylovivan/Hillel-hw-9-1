@@ -27,12 +27,15 @@ public class Main {
             reader = new BufferedReader(new FileReader(FILE));
 
             while((line = reader.readLine()) != null){
+                if(line == ""){
+                    continue;
+                }
                 for (int i = 0; i < line.length(); i++) {
-                    if(line.charAt(i) != '/'){
-                        domainName += line.charAt(i);
+                    if(line.charAt(i) == '/' || line.charAt(i) == ' '){
+                        break;
                     }
                     else {
-                        break;
+                        domainName += line.charAt(i);
                     }
                 }
                 if (!dictionary.containsKey(domainName)){
