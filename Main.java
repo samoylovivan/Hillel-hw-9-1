@@ -1,10 +1,13 @@
 package ivan.samoylov;
 
+import com.sun.jdi.connect.Connector;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.Arrays;
 
 public class Main {
 
@@ -14,7 +17,9 @@ public class Main {
         String line;
         String domainName = "";
         int tmpValue;
+        String tmpArr = "";
         Map<String, String> dictionary = new HashMap<String, String>();
+        TreeSet<String> setTopDomains = new TreeSet<>();
 
         try{
             File file = new File(FILE);
@@ -53,10 +58,6 @@ public class Main {
         catch(Exception error){
             System.out.println(error.getMessage());
         }
-
-        System.out.println("All objects: " + dictionary);
-        System.out.println("All inclusions: " + dictionary.size());
-        System.out.println("Example of the number of occurrences for an object m.youtube.com: " + dictionary.get("m.youtube.com"));
 
     }
 }
