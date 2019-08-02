@@ -58,6 +58,5 @@ public class Main {
         catch(Exception error){
             System.out.println(error.getMessage());
         }
-
     }
 }
