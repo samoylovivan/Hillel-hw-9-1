@@ -1,13 +1,12 @@
 package ivan.samoylov;
 
-import com.sun.jdi.connect.Connector;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.lang.reflect.Array;
-import java.util.*;
-import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeSet;
 
 public class Main {
 
@@ -17,9 +16,8 @@ public class Main {
         String line;
         String domainName = "";
         int tmpValue;
-        String tmpArr = "";
         Map<String, String> dictionary = new HashMap<String, String>();
-        TreeSet<String> setTopDomains = new TreeSet<>();
+        TreeSet<Integer> setAllDomains = new TreeSet<>(Comparator.reverseOrder());
 
         try{
             File file = new File(FILE);
@@ -36,7 +34,7 @@ public class Main {
                     continue;
                 }
                 for (int i = 0; i < line.length(); i++) {
-                    if(line.charAt(i) == '/' || line.charAt(i) == ' '){
+                    if(line.charAt(i) == '/' || line.charAt(i) == ' ' || line == "" ){
                         break;
                     }
                     else {
@@ -57,6 +55,15 @@ public class Main {
         }
         catch(Exception error){
             System.out.println(error.getMessage());
+        }
+
+        for (Map.Entry<String, String> elem: dictionary.entrySet()) {
+            setAllDomains.add(Integer.parseInt(elem.getValue()));
+        }
+
+        for (int i = 0; i < 10; i++ ){
+            System.out.println(setAllDomains.pollFirst());
+            setAllDomains.remove(setAllDomains.pollFirst());
         }
     }
 }
