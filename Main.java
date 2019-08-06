@@ -59,9 +59,9 @@ public class Main {
             setAllDomains.add(Integer.parseInt(elem.getValue()));
         }
 
-        System.out.println("Top " + TOP_DOMAINS + " domains : ");
+        System.out.println("Top " + TOP_DOMAINS + " domains :");
 
-        for (int i = 0; i < TOP_DOMAINS; i++ ){
+        for (int i = 0; i < TOP_DOMAINS; i++){
             System.out.println(getKeysByValue(dictionary, setAllDomains.pollFirst().toString()) + " - " + setAllDomains.pollFirst());
             setAllDomains.remove(setAllDomains.pollFirst());
         }
