@@ -3,15 +3,13 @@ package ivan.samoylov;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
         final String FILE = "urls.txt";
+        final int TOP_DOMAINS = 10;
         BufferedReader reader = null;
         String line;
         String domainName = "";
@@ -61,9 +59,21 @@ public class Main {
             setAllDomains.add(Integer.parseInt(elem.getValue()));
         }
 
-        for (int i = 0; i < 10; i++ ){
-            System.out.println(setAllDomains.pollFirst());
+        System.out.println("Top " + TOP_DOMAINS + " domains : ");
+
+        for (int i = 0; i < TOP_DOMAINS; i++ ){
+            System.out.println(getKeysByValue(dictionary, setAllDomains.pollFirst().toString()) + " - " + setAllDomains.pollFirst());
             setAllDomains.remove(setAllDomains.pollFirst());
         }
+    }
+
+    public static <T, E> Set<T> getKeysByValue(Map<T, E> map, E value) {
+        Set<T> keys = new HashSet<T>();
+        for (Map.Entry<T, E> entry : map.entrySet()) {
+            if (Objects.equals(value, entry.getValue())) {
+                keys.add(entry.getKey());
+            }
+        }
+        return keys;
     }
 }
